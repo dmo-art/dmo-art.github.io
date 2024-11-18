@@ -1,85 +1,103 @@
 @import url("https://fonts.googleapis.com/css2?family=Astloch:wght@400;700&family=Almendra+Display:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Mulish:wght@300&display=swap");
 
+// Font Families
+$mulish: 'Mulish', sans-serif;
+$almendra: 'Almendra Display', serif;
+$cinzel: 'Cinzel Decorative', serif;
+
+// Colors
+$white: #ffffff;
+$black-transparent: rgba(0, 0, 0, 0.45);
+$button-bg: #ffffff;
+$button-text: #000;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Global Reset
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: "Mulish", sans-serif;
-    color: #ffffff;
-    line-height: 1.4;
-    background: url('../images/background.jpeg') no-repeat center center/cover;
-    background-attachment: fixed; /* Fix background image to prevent scrolling */
-    height: 100vh; /* Set body height to viewport height */
-    overflow: hidden; /* Prevent scrolling */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-family: $mulish;
+  color: $white;
+  line-height: 1.4;
+  background: url('../images/background.jpeg') no-repeat center center/cover;
+  background-attachment: fixed;
+  height: 100vh;
+  overflow: hidden;
+  @include flex-center();
 }
 
 .container {
-    display: grid;
-    grid-template-rows: auto auto auto auto; /* Four rows for the layout */
-    gap: 2vw; /* Space between grid rows */
-    width: min(70%, 1280px); /* Limits width for larger screens */
-    height: min(100%, 1024px); /* Set container height to adjust based on content */
-    padding: 4vw;
-    background: rgba(0, 0, 0, 0.45);
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    text-align: center;
-}
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 2vw;
+  width: min(60%, 1280px);
+  height: min(100%, 1024px);
+  padding: 4vw;
+  background: $black-transparent;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  text-align: center;
 
-.container p {
-    font-size: clamp(12px, 3vw, 18px); /* Adjust font size with clamp */
+  p {
+    font-size: clamp(12px, 3vw, 18px);
     font-weight: 550;
+  }
 
-}
-
-/* Logo and web name section in the same row (two columns) */
-.logo-section {
+  // Logo and web name section in the same row (two columns)
+  .logo-section {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Logo takes auto width, web name takes the rest */
+    grid-template-columns: 1fr 2fr;
     align-items: center;
-    gap: 0.5vw; /* Space between logo and web name */
+    gap: 0.5vw;
     margin-top: -2.5vw;
 
-}
+    .logo {
+      img {
+        width: clamp(75px, 10vw, 192px);
+        height: auto;
+        justify-self: center;
+      }
+    }
 
-.logo img {
-    width: clamp(75px, 10vw, 192px); /* Adjust image size relative to viewport */
-    height: auto;
-    justify-self: center; /* Center the logo within its column */
-}
+    .web_name {
+      p {
+        font-size: clamp(20px, 3vw, 46px);
+        font-weight: bold;
+        font-family: $almendra;
+        text-align: left;
+        margin: 0;
+      }
+    }
+  }
 
-.web_name p {
-    font-size: clamp(20px, 3vw, 46px); /* Adjust font size with clamp */
-    font-weight: bold;
-    font-family: "Almendra Display", serif;
-    text-align: left; /* Align text to the left for better readability */
-    margin: 0;
-}
-
-h1, h2 {
+  h1, h2 {
     text-transform: uppercase;
-    font-family: "Cinzel Decorative", serif;
+    font-family: $cinzel;
     margin: 0;
-}
+  }
 
-h1 {
+  h1 {
     font-weight: 200;
-    font-size: clamp(36px, 6vw, 150px); /* Slightly reduced size */
-}
+    font-size: clamp(36px, 6vw, 150px);
+  }
 
-h2 {
+  h2 {
     font-weight: 350;
     font-size: clamp(24px, 5vw, 100px);
     margin-top: -1.8vw;
-}
+  }
 
-form {
+  form {
     display: grid;
     grid-template-columns: 2fr auto;
     column-gap: 0vw;
@@ -87,58 +105,56 @@ form {
     justify-items: center;
     width: 70%;
     margin: 1.5vw auto;
-}
 
-form input {
-    padding: clamp(12px, 2.5vw, 14px);
-    border: 2px solid #ffffff;
-    background: transparent;
-    width: 100%;
-    font-size: clamp(12px, 2.5vw, 14px);
-    color: #ffffff;
-    font-family: "Mulish", sans-serif;
+    input {
+      padding: clamp(12px, 2.5vw, 14px);
+      border: 2px solid $white;
+      background: transparent;
+      width: 100%;
+      font-size: clamp(12px, 2.5vw, 14px);
+      color: $white;
+      font-family: $mulish;
 
-}
+      &::placeholder {
+        color: $white;
+        opacity: 1;
+      }
+    }
 
-form input::placeholder {
-    color: #ffffff;
-    opacity: 1;
-}
+    .btn {
+      padding: clamp(12px, 2.5vw, 14px);
+      border: 2px solid $white;
+      background-color: $button-bg;
+      color: $button-text;
+      text-transform: uppercase;
+      font-size: clamp(12px, 2.5vw, 14px);
+      cursor: pointer;
+      font-family: $mulish;
+    }
+  }
 
-form .btn {
-    padding: clamp(12px, 2.5vw, 14px);
-    border: 2px solid #ffffff;
-    background-color: #ffffff;
-    color: #000;
-    text-transform: uppercase;
-    font-size: clamp(12px, 2.5vw, 14px);
-    cursor: pointer;
-    font-family: "Mulish", sans-serif;
-}
-
-.social_connects {
-    display: flex;
-    justify-content: center;
+  .social_connects {
+    @include flex-center();
     gap: 2vw;
     margin-top: 1vw;
-}
 
-.social_connects a {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: clamp(18px, 2vw, 24px);
-}
+    a {
+      text-decoration: none;
+      color: $white;
+      font-size: clamp(18px, 2vw, 24px);
+    }
+  }
 
-.footer {
+  .footer {
     margin-top: 0.5vw;
-}
 
-.footer p {
-    font-size: clamp(10px, 1vw, 12px);
-    text-align: center;
-}
+    p {
+      font-size: clamp(10px, 1vw, 12px);
+      text-align: center;
+    }
+  }
 
-/* Ensure all content is centered within the container */
-.container > * {
+  > * {
     justify-self: center;
+  }
 }
